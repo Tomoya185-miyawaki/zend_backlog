@@ -1,0 +1,17 @@
+<?php
+$this->title = 'テストページの一覧';
+$this->headTitle($this->title);
+?>
+<p><a href="<?php echo $this->url(array('controller' => 'test', 'action'=>'add'));?>">作成する</a></p>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+    <?php foreach($this->tests as $test) : ?>
+        <tr>
+            <td><?php echo $this->escape($test->title);?></td>
+            <td><?php echo $this->escape($test->content);?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
