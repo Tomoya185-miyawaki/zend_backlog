@@ -1,16 +1,16 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class TestController extends Zend_Controller_Action
 {
 
     public function init()
     {
-        /* Initialize action controller here */
     }
 
     public function indexAction()
     {
-        // action body
+        $tests = new Application_Model_DbTable_Tests();
+        $this->view->tests = $tests->fetchAll();
     }
 
     public function addAction()
