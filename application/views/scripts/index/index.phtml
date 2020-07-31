@@ -39,7 +39,13 @@
             <a href="http://framework.zend.com/">Zend Framework Website</a> |
             <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
         </p>
-        <a href="<?php echo $this->url(array('controller'=>'test',
+        <p>
+          <a href="<?php echo $this->url(array('controller'=>'test',
           'action'=>'index'));?>">Testページへ</a>
+        </p>
+        <p>
+          <a href="<?php echo $this->url(array('controller'=>'auth',
+            'action'=>'login-page'));?>">ログインページへ</a>
+        </p>
     </div>
 </div>

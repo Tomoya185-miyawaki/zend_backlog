@@ -1,0 +1,20 @@
+<?php
+    $this->title = 'ログイン';
+    $this->headTitle($this->title);
+?>
+
+<form action="<?php echo $this->url(array('controller' => 'auth', 'action'=>'login'));?>" method="POST" name="loginForm">
+    <table>
+        <tbody>
+            <tr>
+                <th>メールアドレス</th>
+                <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <th>パスワード</th>
+                <td><input type="password" name="password"></td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="ログイン">
+</form>
