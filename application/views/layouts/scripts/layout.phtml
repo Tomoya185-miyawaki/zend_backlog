@@ -2,9 +2,14 @@
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
 $this->headTitle()->setSeparator(' - ');
 $this->headTitle('Zend Backlog');
+echo $this->doctype();
 
+// ログイン情報を取得する
+$authInfo = array();
+$authStorage = Zend_Auth::getInstance()->getStorage();
+$authInfo = (array)$authStorage->read();
+?>
 
-echo $this->doctype(); ?>
 <html lang="ja">
 <head>
     <?php echo $this->headMeta(); ?>
@@ -12,6 +17,17 @@ echo $this->doctype(); ?>
     <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/site.css'); ?>
 </head>
 <body>
+<header>
+  <?php if($this->url(array('controller'=>'auth', 'action'=>'login-page')) !== $_SERVER["REQUEST_URI"]): ?>
+    <?php if(empty($authInfo)): ?>
+      <a href="<?php echo $this->url(array('controller'=>'auth',
+          'action'=>'login-page'));?>">ログインページへ</a>
+    <?php else: ?>
+      <a href="<?php echo $this->url(array('controller'=>'auth',
+          'action'=>'logout'));?>">ログアウト</a>
+    <?php endif; ?>
+  <?php endif; ?>
+</header>
 <div id="content">
     <h1><?php echo $this->escape($this->title); ?></h1>
     <?php echo $this->layout()->content; ?>
