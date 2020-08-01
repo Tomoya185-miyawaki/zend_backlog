@@ -1,47 +1,49 @@
-<style>
-    a:link,
-    a:visited
-    {
-        color: #0398CA;
-    }
+<script>
+  $(function() {
+    var count = 100;
+    var tasks = [];
+    var apiKey = "uNDofjcPhimOnMQpJufR36GridS7f2sDQWa75uppVvXMeYIPQ9KW6DIv9miUfTDc";
+    var url = "https://miyawaki.backlog.com/api/v2/issues?count=" + count + "&apiKey=" + apiKey;
+    console.log(url);
+    $.ajax({
+      type: "GET",
+      url: url,
+    }).done(function (response) {
+      for (var i = 0; i < count; i++) {
+        if (response[i].status.name === '未対応') {
+          tasks['notStarted'] = response[i]
+        } else if(response[i].status.name === '処理中') {
+          tasks['start'] = response[i]
+        } else if(response[i].status.name === '処理済み') {
+          tasks['processed'] = response[i]
+        } else {
+          tasks['done'] = response[i];
+        }
+      }
+      console.log(tasks);
+    }).fail(function () {
+      alert("取得に失敗しました。");
+    });
+    return false;
+  });
+</script>
 
-    span#zf-name
-    {
-        color: #91BE3F;
-    }
-
-    div#welcome
-    {
-        color: #FFFFFF;
-        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
-        width:  600px;
-        height: 400px;
-        border: 2px solid #444444;
-        overflow: hidden;
-        text-align: center;
-    }
-
-    div#more-information
-    {
-        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
-        height: 100%;
-    }
-</style>
-<div id="welcome">
-    <h1>Welcome to the <span id="zf-name">Zend Framework!</span></h1>
-
-    <h3>This is your project's main page</h3>
-
-    <div id="more-information">
-        <p><img src="http://framework.zend.com/images/PoweredBy_ZF_4LightBG.png" /></p>
-        <p>
-            Helpful Links: <br />
-            <a href="http://framework.zend.com/">Zend Framework Website</a> |
-            <a href="http://framework.zend.com/manual/en/">Zend Framework Manual</a>
-        </p>
-        <p>
-          <a href="<?php echo $this->url(array('controller'=>'test',
-          'action'=>'index'));?>">Testページへ</a>
-        </p>
+<div class="tasks">
+  <h1>課題一覧</h1>
+  <div class="tasks-list-wrapper">
+    <div class="not-started tasks-list">
+      <h2>未着手</h2>
     </div>
+    <div class="start tasks-list">
+      <h2>処理中</h2>
+    </div>
+    <div class="processed tasks-list">
+      <h2>処理済み</h2>
+    </div>
+    <div class="done tasks-list">
+      <h2>完了</h2>
+    </div>
+  </div>
+  <a href="<?php echo $this->url(array('controller'=>'test',
+  'action'=>'index'));?>">Testページへ</a>
 </div>

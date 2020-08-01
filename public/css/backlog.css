@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.tasks {
+  width: 1000px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px 10px;
+  margin-top: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .7);
+}
+
+.tasks h1 {
+  margin: 0;
+}
+
+.tasks-list-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tasks-list {
+  width: 50%;
+}
