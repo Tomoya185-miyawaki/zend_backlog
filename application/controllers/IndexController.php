@@ -10,7 +10,12 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        // 未ログイン状態ならばログインページへリダイレクト
+        $auth = Zend_Auth::getInstance();
+        if (!$auth->hasIdentity())
+        {
+            $this->_helper->redirector('login-page', 'auth');
+        }
     }
 
     public function addAction()
