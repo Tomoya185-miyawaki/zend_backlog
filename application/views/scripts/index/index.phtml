@@ -1,47 +1,9 @@
-<script>
-  $(function() {
-    var count = 100;
-    var tasks = [];
-    var apiKey = "uNDofjcPhimOnMQpJufR36GridS7f2sDQWa75uppVvXMeYIPQ9KW6DIv9miUfTDc";
-    var url = "https://miyawaki.backlog.com/api/v2/issues?count=" + count + "&apiKey=" + apiKey;
-    console.log(url);
-    $.ajax({
-      type: "GET",
-      url: url,
-    }).done(function (response) {
-      for (var i = 0; i < count; i++) {
-        if (response[i].status.name === '未対応') {
-          tasks['notStarted'] = response[i]
-        } else if(response[i].status.name === '処理中') {
-          tasks['start'] = response[i]
-        } else if(response[i].status.name === '処理済み') {
-          tasks['processed'] = response[i]
-        } else {
-          tasks['done'] = response[i];
-        }
-      }
-      console.log(tasks);
-    }).fail(function () {
-      alert("取得に失敗しました。");
-    });
-    return false;
-  });
-</script>
-
 <div class="tasks">
   <h1>課題一覧</h1>
   <div class="tasks-list-wrapper">
-    <div class="not-started tasks-list">
-      <h2>未着手</h2>
-    </div>
-    <div class="start tasks-list">
-      <h2>処理中</h2>
-    </div>
-    <div class="processed tasks-list">
-      <h2>処理済み</h2>
-    </div>
-    <div class="done tasks-list">
-      <h2>完了</h2>
+    <div class="tasks-list">
+      <h2>最新の100件のグラフ</h2>
+      <canvas id="canvas" width="500" height="500"></canvas>
     </div>
   </div>
   <a href="<?php echo $this->url(array('controller'=>'test',
