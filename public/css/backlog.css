@@ -8,6 +8,7 @@
   margin-top: 40px;
   border-radius: 10px;
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .7);
+  text-align: center;
 }
 
 .tasks h1 {
@@ -15,11 +16,15 @@
 }
 
 .tasks-list-wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .tasks-list {
-  width: 50%;
+  width: 100%;
+}
+
+#canvas {
+  width: 700px !important;
+  height: 560px !important;
+  margin: 0 auto;
 }
